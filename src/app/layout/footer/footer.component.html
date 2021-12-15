@@ -1,0 +1,28 @@
+<div class="row text-center" style="background-color: white;">
+            <small class="col-12  mb-3 pt-3" style="background-color: white;">
+              <span class="badge bg-dark">LinkedIn</span>
+              <span class="footer-copyright">© 2021</span>
+              <a *ngFor="let a of footerDetail" class="text-muted text-decoration-none ps-3"[id]="a.id">{{a.name}}</a>
+              <!-- <a href=""class="text-muted text-decoration-none ps-3">Accessibilty</a>
+              <a href=""class="text-muted text-decoration-none ps-3">User Agreement</a>
+              <a href=""class="text-muted text-decoration-none ps-3">Privcy Policy</a>
+              <a href=""class="text-muted text-decoration-none ps-3">Cookie Policy</a>
+              <a href=""class="text-muted text-decoration-none ps-3">Copyright Polict</a>
+              <a href=""class="text-muted text-decoration-none ps-3">Brand Policy</a>
+              <a href=""class="text-muted text-decoration-none ps-3">Guest Controls</a>
+              <a href=""class="text-muted text-decoration-none ps-3">Community Guidelines</a> -->
+
+              <div class="btn-group dropup">
+                  <button type="button" class="btn btn-link text-muted text-decoration-none ps-3 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                    Language
+                  </button>
+                  <ul class="dropdown-menu">
+
+                      <li><a class="dropdown-item" href="#">Arabic</a></li>
+                      <li><a class="dropdown-item" href="#">English</a></li>
+                      <li><a class="dropdown-item" href="#">French</a></li>
+                    </ul>
+                </div>
+
+            </small>
+        </div>

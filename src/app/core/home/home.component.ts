@@ -2,12 +2,15 @@ import { Component, OnInit } from '@angular/core';
 import { User } from 'src/app/_models/registerUser.model';
 import { UserServiceService } from 'src/app/_services/user-service.service';
 import { PostServiceService } from 'src/app/_services/post-service.service';
+import { CommentService } from 'src/app/_services/comment.service';
+import { Comment } from 'src/app/_models/comment.model';
 import { Post } from 'src/app/_models/post.model';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Observable } from 'rxjs';
 import { FormGroup, FormBuilder } from '@angular/forms';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { ProviderAstType } from '@angular/compiler';
+
 
 
 @Component({
@@ -21,8 +24,10 @@ export class HomeComponent implements OnInit {
 	newID: string = '';
 	person!: User | any;
 	posts!: Post | any;
+  comments!: Comment | any;
 
-	constructor(private user: UserServiceService, private postService: PostServiceService, private adAuth: AngularFireAuth, private fb: FormBuilder, private modalService: NgbModal) {}
+
+	constructor(private user: UserServiceService, private postService: PostServiceService,  private commentService: CommentService, private adAuth: AngularFireAuth, private fb: FormBuilder, private modalService: NgbModal) {}
 
 	ngOnInit(): void {
 		this.userID = localStorage.getItem('token');
@@ -40,10 +45,27 @@ export class HomeComponent implements OnInit {
 				return {
 					id: e.payload.doc.id,
 					body: data.body,
-					name:data.name,
+					name:data.Name,
 				};
 			})
 		})
+
+		this.commentService.getAllComments()?.subscribe(data => {
+			this.comments = data.map(e => {
+				const data: any = e.payload.doc.data()
+				return {
+          Idd:data.IDD,
+					id: e.payload.doc.id,
+					body: data.body,
+					name:data.Name,
+				};
+			})
+		})
+
+
+
+
+
 
 		this.editPostForm = this.fb.group({
 			id: [''],
@@ -55,6 +77,10 @@ export class HomeComponent implements OnInit {
 	onPost(form: Post) {
 		this.postService.createPost({ID:this.person.ID,Name:this.person.firstName,...form});
 	}
+	onPostt(form: Comment,postID:string) {
+		this.commentService.createComment({ID:this.person.ID,Name:this.person.firstName,IDD:postID,...form});
+	}
+
 
 	openModal(targetModal: any, post: Post) {
 		this.modalService.open(targetModal, {

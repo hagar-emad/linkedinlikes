@@ -10,5 +10,6 @@ export interface User{
   jobTitle:string;
   company:string;
   employmentType:string;
+  img:string;
   // repeatedPassword?: string;
 }

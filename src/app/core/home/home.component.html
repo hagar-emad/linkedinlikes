@@ -273,8 +273,54 @@
 						<div style="width: 15%;">
 							<img src={{person.img}} class=" mx-auto d-block">
 						</div>
-						<input class="form-control me-2" type="text" placeholder="Add a Comment..." aria-label="post"
-							style="background-color: white; width:90%; border-radius: 45px;">
+            <div>
+					<!-- <input class="form-control me-2" type="text" placeholder="Add a Comment..." aria-label="post"
+							style="background-color: white; width:90%; border-radius: 45px;"> -->
+
+
+
+
+
+
+              <form #form="ngForm" (ngSubmit)="onPostt(form.value,post.id)">
+                <input class="on-your-mind" name="body" ngModel placeholder="What's on your mind?" type="text">
+                <button  type="submit">Send</button>
+              </form>
+
+              <div class="card" *ngFor="let comment of comments">
+                <div class="card-body" *ngIf="post.id==comment.Idd" >
+                    <h5 class="card-title">
+                        <div class="d-flex gap-3">
+                            <div>
+                                <img src={{person.img}}>
+                            </div>
+                            <div>
+
+                                <h5 style="color: black;">{{comment.name}} </h5>
+                                <h6 style="color: gray;">{{person.jobTitle}}</h6>
+                                <h6 style="color: gray;">1w</h6>
+                            </div>
+
+                        </div>
+                    </h5>
+                    <p class="postbody">{{comment.body}}</p>
+                </div>
+
+
+            </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+            </div>
 					</div>
 				</div>
 			</div>
@@ -336,3 +382,4 @@
 		</div>
 	</div>
 </div>
+<!-- *ngIf="post.id==comment.Idd" -->
